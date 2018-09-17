@@ -1,0 +1,49 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="CalculaImc.CalculaImcPage"
+            Title="Cálculo do Valor do IMC"
+            Padding="10">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label Text="Seu Nome" />
+            <Entry Placeholder="Digite seu nome"
+                  Text="{Binding Nome}"
+                  Keyboard="Text"/>
+            
+            <Label Text="Seu Peso" />
+            <Entry Placeholder="Digite seu peso"
+                  Text="{Binding ValorPeso}"
+                  Keyboard="Numeric"/>
+
+            <Label Text="Sua Altura" />
+            <Entry Placeholder="Digite sua altura"
+                  Text="{Binding ValorAltura}"
+                  Keyboard="Numeric"/>
+
+            <Label Text="IMC = "
+                  Text="{Binding ValorImc}"
+                  FontSize="Large"
+                  TextColor="Green"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        BackgroundColor="#cdcdcd"
+                        Text="Limpar"
+                        x:Name="LimparButton"/>
+                <Button Grid.Column="1"
+                    Text="Gravar"
+                    TextColor="White"
+                    BackgroundColor="#6699ff"
+                   Command="{Binding GravarCommand}"/>
+            </Grid>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
