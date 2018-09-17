@@ -34,7 +34,7 @@
 
                 <Button Grid.Column="0"
                         BackgroundColor="#cdcdcd"
-                        Text="Limpar"
+                        Text="Limparr"
                         x:Name="LimparButton"/>
                 <Button Grid.Column="1"
                     Text="Gravar"
