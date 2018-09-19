@@ -5,7 +5,9 @@ using CalculaImc.ViewModels.Base;
 using CalculaImc.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CalculaImc.ViewModels
@@ -29,6 +31,7 @@ namespace CalculaImc.ViewModels
             set
             {
                 SetProperty(ref valorAltura, value);
+                CalcularImc();
             }
         }
 
@@ -47,10 +50,7 @@ namespace CalculaImc.ViewModels
         public double ValorImc
         {
             get { return valorImc; }
-            set
-            {
-                SetProperty(ref valorImc, value);
-            }
+            set { SetProperty(ref valorImc, value); }
         }
 
         private CalculoPessoa calculoPessoa;
@@ -63,6 +63,8 @@ namespace CalculaImc.ViewModels
             }
         }
 
+     
+
         private void CalcularImc()
         {
 
@@ -73,14 +75,27 @@ namespace CalculaImc.ViewModels
         }
 
         public Command GravarCommand { get; }
+        public Command LimparCommand { get; }
+        
 
         private readonly ICalculoPessoaService CalculoPessoaService;
         public CalculoValorImcViewModel(ICalculoPessoaService calculoPessoaService)
         {
             GravarCommand = new Command(ExecuteGravarCommand);
+            LimparCommand = new Command(ExecuteLimparCommand);
             CalculoPessoa = new CalculoPessoa();
             CalculoPessoaService = calculoPessoaService;
+ 
         }
+
+        private void ExecuteLimparCommand()
+        {
+            Nome = string.Empty;
+            ValorAltura = 0;
+            ValorPeso = 0;
+            ValorImc = 0;
+        }
+
 
 
         private async void ExecuteGravarCommand(object obj)
@@ -90,10 +105,15 @@ namespace CalculaImc.ViewModels
             CalculoPessoa.Nome = Nome;
             CalculoPessoa.ValorImc = ValorImc;
 
-            // var profissionalAzureClient = new AzureRepository();
-            //profissionalAzureClient.Insert(Profissional);
+     
             CalculoPessoaService.Inserir(calculoPessoa);
+            ExecuteLimparCommand();
             await App.Current.MainPage.Navigation.PushAsync(new CalculoValorImcSucessoPage());
         }
+
+       
+       
+
+       
     }
 }

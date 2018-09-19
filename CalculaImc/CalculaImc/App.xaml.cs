@@ -2,8 +2,10 @@
 using CalculaImc.Domain.CalculoPessoas.Repository;
 using CalculaImc.Services;
 using CalculaImc.Services.Interfaces;
+using CommonServiceLocator;
 using System;
 using Unity;
+using Unity.ServiceLocation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +21,8 @@ namespace CalculaImc
 
             unityContainer.RegisterType<ICalculoPessoaRepository, CalculoPessoaRepository>();
             unityContainer.RegisterType<ICalculoPessoaService, CalculoPessoaService>();
+
+            ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(unityContainer));
 
             MainPage = new NavigationPage(new HomePage());
         }

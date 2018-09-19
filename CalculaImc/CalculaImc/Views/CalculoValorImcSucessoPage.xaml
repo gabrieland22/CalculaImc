@@ -15,7 +15,7 @@
                      WidthRequest="100"
 	                 HorizontalOptions="Center"
           	         VerticalOptions="Center"/>
-            <Label Text="IMC Gravado com sucesso!"
+            <Label Text="IMC Gravado!"
                    FontSize="Large"
                    TextColor="Green"
                    FontAttributes="Bold"

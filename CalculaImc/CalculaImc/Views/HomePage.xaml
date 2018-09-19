@@ -6,5 +6,6 @@
              x:Class="CalculaImc.HomePage">
 
     <local:CalculaImcPage/>
+    <local:CalculoPessoasPage/>
 
 </TabbedPage>

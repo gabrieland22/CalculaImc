@@ -21,7 +21,9 @@
                   Text="{Binding ValorAltura}"
                   Keyboard="Numeric"/>
 
-            <Label Text="{Binding ValorImc}"
+            <Label Text="Seu IMC" />
+            <Label 
+                  Text="{Binding ValorImc}" 
                   FontSize="Large"
                   TextColor="Green"/>
 

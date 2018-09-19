@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculaImc.CalculoPessoasPage"
+             Title="Pessoas">
+    <ContentPage.Content>
+            <ListView 
+                ItemsSource="{Binding CalculoPessoas}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding AtualizarDadosCommand}"
+                IsRefreshing="{Binding Atualizando}"
+                HasUnevenRows="True"
+                SelectedItem="{Binding CalculoPessoa}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Nome}" 
+                                 FontSize="Medium" />
+                            <Label
+                                 Text="{Binding ValorImc}"
+                                 FontSize="Small"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
