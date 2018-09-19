@@ -21,8 +21,7 @@
                   Text="{Binding ValorAltura}"
                   Keyboard="Numeric"/>
 
-            <Label Text="IMC = "
-                  Text="{Binding ValorImc}"
+            <Label Text="{Binding ValorImc}"
                   FontSize="Large"
                   TextColor="Green"/>
 
@@ -34,8 +33,9 @@
 
                 <Button Grid.Column="0"
                         BackgroundColor="#cdcdcd"
-                        Text="Limparr"
-                        x:Name="LimparButton"/>
+                        Text="Limpar"
+                        x:Name="LimparButton"
+                         Command="{Binding LimparCommand}"/>
                 <Button Grid.Column="1"
                     Text="Gravar"
                     TextColor="White"

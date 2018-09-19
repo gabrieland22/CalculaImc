@@ -1,5 +1,8 @@
-﻿using CalculaImc.Models;
+﻿using CalculaImc.Domain.CalculoPessoas.Repository;
+using CalculaImc.Models;
+using CalculaImc.Services.Interfaces;
 using CalculaImc.ViewModels.Base;
+using CalculaImc.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +10,7 @@ using Xamarin.Forms;
 
 namespace CalculaImc.ViewModels
 {
-    class CalculoValorImcViewModel : ViewModelBase
+    public class CalculoValorImcViewModel : ViewModelBase
     {
         private string nome;
         public string Nome
@@ -71,11 +74,14 @@ namespace CalculaImc.ViewModels
 
         public Command GravarCommand { get; }
 
-        public CalculoValorImcViewModel()
+        private readonly ICalculoPessoaService CalculoPessoaService;
+        public CalculoValorImcViewModel(ICalculoPessoaService calculoPessoaService)
         {
             GravarCommand = new Command(ExecuteGravarCommand);
             CalculoPessoa = new CalculoPessoa();
+            CalculoPessoaService = calculoPessoaService;
         }
+
 
         private async void ExecuteGravarCommand(object obj)
         {
@@ -84,9 +90,10 @@ namespace CalculaImc.ViewModels
             CalculoPessoa.Nome = Nome;
             CalculoPessoa.ValorImc = ValorImc;
 
-           // var profissionalAzureClient = new AzureRepository();
+            // var profissionalAzureClient = new AzureRepository();
             //profissionalAzureClient.Insert(Profissional);
-           // await App.Current.MainPage.DisplayAlert("Sucesso", "Valor por hora gravado!", "Ok");
+            CalculoPessoaService.Inserir(calculoPessoa);
+            await App.Current.MainPage.Navigation.PushAsync(new CalculoValorImcSucessoPage());
         }
     }
 }

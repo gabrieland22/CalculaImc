@@ -1,4 +1,9 @@
-﻿using System;
+﻿using CalcFreelancer.Infra.Data.Repository;
+using CalculaImc.Domain.CalculoPessoas.Repository;
+using CalculaImc.Services;
+using CalculaImc.Services.Interfaces;
+using System;
+using Unity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +15,11 @@ namespace CalculaImc
         public App()
         {
             InitializeComponent();
+            var unityContainer = new UnityContainer();
+
+            unityContainer.RegisterType<ICalculoPessoaRepository, CalculoPessoaRepository>();
+            unityContainer.RegisterType<ICalculoPessoaService, CalculoPessoaService>();
+
             MainPage = new NavigationPage(new HomePage());
         }
 

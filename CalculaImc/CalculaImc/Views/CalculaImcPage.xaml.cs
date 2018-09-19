@@ -1,4 +1,5 @@
 ﻿using CalculaImc.ViewModels;
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace CalculaImc
 		public CalculaImcPage ()
 		{
 			InitializeComponent ();
-            var viewModel = new CalculoValorImcViewModel();
+            var viewModel = ServiceLocator.Current.GetInstance<CalculoValorImcViewModel>();
             BindingContext = viewModel;
 
         }
