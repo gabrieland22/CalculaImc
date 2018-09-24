@@ -2,6 +2,7 @@
 using CalculaImc.Services;
 using CalculaImc.Services.Interfaces;
 using CalculaImc.ViewModels.Base;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -30,7 +31,8 @@ namespace CalculaImc.ViewModels
                 SetProperty(ref calculoPessoa, value);
 
                 if (calculoPessoa != null)
-                    App.Current.MainPage.DisplayAlert(calculoPessoa.Nome, "IMC: "+calculoPessoa.ValorImc, "ok");
+                    App.Current.MainPage.DisplayAlert(calculoPessoa.Nome, "IMC: "+ Decimal.Parse(calculoPessoa.ValorImc.ToString()).ToString("N2"), "ok");
+                
             }
         }
 

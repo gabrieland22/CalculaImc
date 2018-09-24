@@ -1,8 +1,16 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="CalculaImc.CalculaImcPage"
+              xmlns:converters="clr-namespace:CalculaImc.Converters"
             Title="Cálculo do Valor do IMC"
             Padding="10">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+   
     <ContentPage.Content>
         <StackLayout>
 
@@ -13,17 +21,17 @@
             
             <Label Text="Seu Peso" />
             <Entry Placeholder="Digite seu peso"
-                  Text="{Binding ValorPeso}"
+                  Text="{Binding ValorPeso, Converter={StaticResource DecimalConverter}}"
                   Keyboard="Numeric"/>
 
             <Label Text="Sua Altura" />
             <Entry Placeholder="Digite sua altura"
-                  Text="{Binding ValorAltura}"
+                  Text="{Binding ValorAltura, Converter={StaticResource DecimalConverter}}"
                   Keyboard="Numeric"/>
 
             <Label Text="Seu IMC" />
             <Label 
-                  Text="{Binding ValorImc}" 
+                  Text="{Binding ValorImc, Converter={StaticResource DecimalConverter}}" 
                   FontSize="Large"
                   TextColor="Green"/>
 

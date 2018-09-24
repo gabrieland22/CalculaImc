@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:CalculaImc.Converters"
              x:Class="CalculaImc.CalculoPessoasPage"
              Title="Pessoas">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
             <ListView 
                 ItemsSource="{Binding CalculoPessoas}"
@@ -18,7 +25,7 @@
                             <Label Text="{Binding Nome}" 
                                  FontSize="Medium" />
                             <Label
-                                 Text="{Binding ValorImc}"
+                                 Text="{Binding ValorImc, Converter={StaticResource DecimalConverter}}"
                                  FontSize="Small"/>
                         </StackLayout>
                     </ViewCell>
